@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Samin Tours</title>
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🚗 Samin Tour & Travels - Admin</h1>
+      <nav>
+        <a href="/admin/cars.html" class="active">Cars</a>
+        <a href="/admin/bookings.html">Bookings</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </nav>
+    </div>
+
+    <div class="content">
+      <div class="page-header">
+        <h2>Manage Cars</h2>
+        <button onclick="showAddCarModal()" class="btn-primary">+ Add New Car</button>
+      </div>
+
+      <div class="cars-grid" id="carsGrid">
+        <p class="loading">Loading cars...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Car Modal -->
+  <div id="carModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Add New Car</h3>
+        <span class="close" onclick="closeModal()">&times;</span>
+      </div>
+      <form id="carForm" enctype="multipart/form-data">
+        <input type="hidden" id="carId">
+        
+        <div class="form-group">
+          <label>Car Name *</label>
+          <input type="text" id="carName" required placeholder="e.g., Toyota Innova Crysta">
+        </div>
+
+        <div class="form-group">
+          <label>Car Image *</label>
+          <input type="file" id="carImage" accept="image/*">
+          <div id="imagePreview"></div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Base 100km Fare (₹) *</label>
+            <input type="number" id="baseFare" required min="0" step="0.01" placeholder="3500">
+          </div>
+
+          <div class="form-group">
+            <label>Extra Per Km (₹) *</label>
+            <input type="number" id="extraPerKm" required min="0" step="0.01" placeholder="18">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="isActive" checked>
+            <span>Active (visible to customers)</span>
+          </label>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" onclick="closeModal()" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Save Car</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/admin/js/cars.js"></script>
+</body>
+</html>
