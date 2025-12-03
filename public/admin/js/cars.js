@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5001/api';
+const API_URL = 'https://samin-tours-backends.onrender.com/api';
 let currentCarId = null;
 
 // Get admin credentials from localStorage or redirect to login
@@ -58,7 +58,7 @@ function displayCars(cars) {
 
     grid.innerHTML = cars.map(car => `
     <div class="car-card">
-      <img src="http://localhost:5001${car.image_url}" alt="${car.name}">
+      <img src="https://samin-tours-backends.onrender.com${car.image_url}" alt="${car.name}">
       <h3>${car.name}</h3>
       <div class="car-info">
         <div>Base 100km: ₹${car.base_100km_fare}</div>
@@ -107,7 +107,7 @@ async function editCar(id) {
             document.getElementById('extraPerKm').value = car.extra_per_km;
             document.getElementById('isActive').checked = car.is_active;
             document.getElementById('imagePreview').innerHTML = `
-        <img src="http://localhost:5001${car.image_url}" alt="${car.name}">
+        <img src="https://samin-tours-backends.onrender.com${car.image_url}" alt="${car.name}">
         <p style="color: var(--text-secondary); font-size: 12px; margin-top: 5px;">Upload new image to replace</p>
       `;
             document.getElementById('carModal').classList.add('show');
