@@ -36,7 +36,16 @@ async function authenticateAdmin(req, res, next) {
             });
         }
 
-        const isValidPassword = await bcrypt.compare(password, validPasswordHash);
+        let isValidPassword = false;
+
+        // Check if stored password is a bcrypt hash (starts with $2a$ or $2b$)
+        if (validPasswordHash.startsWith('$2a$') || validPasswordHash.startsWith('$2b$')) {
+            isValidPassword = await bcrypt.compare(password, validPasswordHash);
+        } else {
+            // Fallback to plain text comparison (for easier setup)
+            isValidPassword = (password === validPasswordHash);
+        }
+
         console.log('Password valid:', isValidPassword);
 
         if (!isValidPassword) {
